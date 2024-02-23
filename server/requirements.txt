@@ -4,6 +4,12 @@ djangorestframework==3.14.0
 django-environ==0.11.2
 # отладчик для Django
 django-debug-toolbar>=3.6.0,<3.7.0
+# доп возможности для django
+django-extensions>=3.2.0,<3.2.5
+# для генерации схемы бд
+pygraphviz>=1.12,<1.13
+# вложенные сериализаторы
+drf-writable-nested>=0.7.0,<0.7.1
 
 # статический анализ кода (линтеры)
 isort>=5.13.1,<5.14.0
@@ -16,3 +22,6 @@ black>=22.8.0,<22.9.0
 
 # адаптер для подключения к PostgreSQL
 psycopg2-binary>=2.9.3,<2.10.0
+
+# работа с изображениями
+Pillow>=10.2.0,<10.3.0
