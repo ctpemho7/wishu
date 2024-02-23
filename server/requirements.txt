@@ -1,0 +1,18 @@
+Django>=4.2.10, <4.3.0
+djangorestframework==3.14.0
+# работа с переменными окружения
+django-environ==0.11.2
+# отладчик для Django
+django-debug-toolbar>=3.6.0,<3.7.0
+
+# статический анализ кода (линтеры)
+isort>=5.13.1,<5.14.0
+flake8-django>=1.4,<1.5
+pylint-django>=2.5.3,<2.6.0
+# django-stubs[compatible-mypy]>=1.12.0,<1.13.0
+
+# автоматическое форматирование кода
+black>=22.8.0,<22.9.0
+
+# адаптер для подключения к PostgreSQL
+psycopg2-binary>=2.9.3,<2.10.0
