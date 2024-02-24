@@ -17,13 +17,15 @@ import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = environ.Path(__file__) - 3
 
 # https://django-environ.readthedocs.io/en/latest/quickstart.html?highlight=list#usage
 env = environ.Env(DEBUG=(bool, False))
+env.read_env(ROOT_DIR(".env"))
 
 # Take environment variables from .env file
-env.read_env(os.path.join(BASE_DIR, '.env'))
-
+# env.read_env(os.path.join(BASE_DIR, '.env'))
+# env.read_env(ROOT_DIR(".env"))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 

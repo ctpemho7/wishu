@@ -22,7 +22,7 @@ from events.views import EventViewSet
 from presents.views import GiftViewSet, PresentListViewSet
 from users.views import UserViewSet
 
-router = routers.SimpleRouter()
+router = routers.DefaultRouter()
 router.register(r'profile', UserViewSet)
 router.register(r'profile/(?P<profile_id>\d+)/lists', PresentListViewSet)
 router.register(r'lists/(?P<list_id>\d+)/gifts', GiftViewSet)

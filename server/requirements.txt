@@ -7,7 +7,7 @@ django-debug-toolbar>=3.6.0,<3.7.0
 # доп возможности для django
 django-extensions>=3.2.0,<3.2.5
 # для генерации схемы бд
-pygraphviz>=1.12,<1.13
+# pygraphviz>=1.12,<1.13
 # вложенные сериализаторы
 drf-writable-nested>=0.7.0,<0.7.1
 

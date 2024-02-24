@@ -9,13 +9,10 @@ from base.models import TimeStampMixin
 class User(TimeStampMixin, AbstractUser):
     """
     Модель пользователя
-    AbstractUser уже содержит в себе поля username first_name, last_name, email, is_staff, is_active, date_joined
+    AbstractUser уже содержит в себе поля username, first_name, last_name, email, is_staff, is_active, date_joined
     """
     birth_date = models.DateField("День рождения")
     REQUIRED_FIELDS = ['birth_date']
-    # friends = models.ManyToManyField("User", blank=True)
-
-    # friends = models.ManyToManyField("User", through="Friend")
 
 
 class Friend(models.Model):
