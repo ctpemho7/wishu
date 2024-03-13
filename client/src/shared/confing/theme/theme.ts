@@ -1,5 +1,5 @@
 import { extendTheme } from "@mui/material-next/styles";
-import * as configTheme from './material-theme.json'
+import * as configTheme from './material-theme (fiol).json'
 
 
 export const theme = extendTheme({
@@ -10,4 +10,23 @@ export const theme = extendTheme({
             tertiary: configTheme.palettes.tertiary,
         }
     },
+    // colorSchemes: {
+    //     light: {
+    //         palette: {
+    //             background: {
+    //                 paper: configTheme.schemes.light.outline
+    //             },
+    //             primary: {
+    //                 main: configTheme.schemes.light.primary
+    //             }
+    //         }
+    //     }
+    // },
+    // components:{
+    //     MuiInput:{
+    //         styleOverrides:{
+
+    //         }
+    //     }
+    // }
 });

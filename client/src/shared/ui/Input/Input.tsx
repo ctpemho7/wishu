@@ -1,9 +1,27 @@
-import MaterialInput from '@mui/material-next/FilledInput'
+import MaterialInput, { OutlinedInputProps } from '@mui/material-next/OutlinedInput'
 
+const InputStyles = {
+    margin: '0.2em'
+}
 
-const Input = () => {
+export interface InputProps {
+    placeholder?: string
+}
+
+const MaterialInputProps: OutlinedInputProps = {
+    margin: 'dense',
+    size: 'small',
+    color: 'secondary'
+}
+
+const Input = ({ placeholder }: InputProps) => {
     return (
-        <MaterialInput color='primary'></MaterialInput>
+        <MaterialInput
+            placeholder={placeholder}
+            label={'dadsd'}
+            {...MaterialInputProps}
+            sx={InputStyles}
+        />
     );
 };
 

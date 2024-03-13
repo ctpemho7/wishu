@@ -1,12 +1,14 @@
 import MaterialButton from '@mui/material-next/Button/Button'
 
 interface ButtonProps {
+    text: string
     variant: 'text' | 'outlined' | 'filled' | 'filledTonal' | 'elevated'
+    onClick?: () => void
 }
 
-const Button = ({ variant }: ButtonProps) => {
+const Button = ({ variant, text, onClick }: ButtonProps) => {
     return (
-        <MaterialButton variant={variant} color='primary'> edede</MaterialButton>
+        <MaterialButton onClick={onClick} variant={variant} color='primary'>{text}</MaterialButton>
     );
 };
 
