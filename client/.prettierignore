@@ -1,0 +1,8 @@
+# Ignore artifacts:
+build
+release
+package-lock.json
+out
+dist
+tsconfig.json
+tsconfig.*.json

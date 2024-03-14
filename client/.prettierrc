@@ -1,0 +1,4 @@
+{
+    printWidth: 80
+    jsxSingleQuote: true
+}
