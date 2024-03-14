@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { TypedUseSelectorHook, useSelector } from 'react-redux'
+import { authReducer } from '../features/LoginForm/model/auth.slice'
 import { rtkApi } from '../shared/api/rtkApi'
 
 export const store = configureStore({
     reducer: {
-
+        auth: authReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
@@ -13,3 +16,7 @@ export const store = configureStore({
 })
 
 export type AppDispatch = typeof store.dispatch
+
+export type RootState = ReturnType<typeof store.getState>
+
+export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
