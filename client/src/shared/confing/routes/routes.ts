@@ -1,7 +1,7 @@
 import { ComponentType, PropsWithChildren } from "react";
 
 export enum RouteName {
-    WISHU_PAGE = '/',
+    MAIN_PAGE = '/main',
     LOGIN_PAGE = '/login',
     PROFILE_PAGE = '/profile'
 }

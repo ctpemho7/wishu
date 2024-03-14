@@ -1,30 +1,84 @@
-import { Route, Routes } from 'react-router-dom';
+import { ReactElement } from 'react';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { LoginPage } from '../../pages/LoginPage';
+import { MainPage } from '../../pages/MainPage';
 import { ProfilePage } from '../../pages/ProfilePage';
-import { RouteDescription, RouteName } from '../../shared/confing/routes/routes';
+import { RouteName } from '../../shared/confing/routes/routes';
+import { useTypedSelector } from '../store';
 
-const { LOGIN_PAGE, PROFILE_PAGE } = RouteName
-
-const routes: RouteDescription[] = [
-    {
-        path: LOGIN_PAGE,
-        component: LoginPage
-    },
-    {
-        path: PROFILE_PAGE,
-        component: ProfilePage
-    }
-]
+const { LOGIN_PAGE, PROFILE_PAGE, MAIN_PAGE } = RouteName
 
 
-const AppRouter = () => {
-    return (
-        <Routes>
-            {
-                routes.map((item) => <Route key={item.path} path={item.path} element={item.path} />)
-            }
-        </Routes>
-    );
-};
+type GuestGuardProps = {
+    children: ReactElement
+}
 
-export default AppRouter;
+function GuestGuard({ children }: GuestGuardProps) {
+    const isAuthorized = useTypedSelector(state => state.auth.isAuthenticated)
+
+    if (!isAuthorized) return <Navigate to="/login" />
+
+    return children
+}
+
+type AuthGuardProps = {
+    children: ReactElement
+}
+
+function AuthGuard({ children }: AuthGuardProps) {
+    const isAuthorized = useTypedSelector(state => state.auth.isAuthenticated)
+
+    if (isAuthorized) return <Navigate to="/main" />
+
+    return children
+}
+
+export const appRouter = () =>
+    createBrowserRouter([
+        {
+            //element: baseLayout,
+            errorElement: <div>error</div>,
+            // loader: async () => {
+            //     return await featureToggleLoader(appStore.dispatch)
+            // },
+            children: [
+                {
+                    path: LOGIN_PAGE,
+                    element: (
+                        <AuthGuard>
+                            <LoginPage />
+                        </AuthGuard>
+                    ),
+                },
+                {
+                    path: MAIN_PAGE,
+                    element: (
+                        <GuestGuard>
+                            <MainPage />
+                        </GuestGuard>
+                    ),
+                },
+                {
+                    path: PROFILE_PAGE,
+                    element: (
+                        <GuestGuard>
+                            <ProfilePage />
+                        </GuestGuard>
+                    ),
+                },
+            ],
+        },
+        // {
+        //     element: layoutWithSidebar,
+        //     errorElement: <div>error</div>,
+        //     loader: async () => {
+        //         return await featureToggleLoader(appStore.dispatch)
+        //     },
+        //     children: [
+        //         {
+        //             path: '/',
+        //             element: <MainPage />,
+        //         },
+        //     ],
+        // },
+    ])
