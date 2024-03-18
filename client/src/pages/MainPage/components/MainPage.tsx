@@ -1,10 +1,11 @@
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import { GiftList } from "../../../widgets/GiftList";
 
 const MainPage = () => {
     return (
         <Grid2>
             <Grid2>
-                MainPage
+                <GiftList />
             </Grid2>
             <Grid2 />
         </Grid2>
