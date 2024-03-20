@@ -5,6 +5,7 @@ import { MainPage } from '../../pages/MainPage';
 import { ProfilePage } from '../../pages/ProfilePage';
 import { RouteName } from '../../shared/confing/routes/routes';
 import { GiftList } from '../../widgets/GiftList';
+import TopMenu from '../../widgets/TopMenu/components/TopMenu';
 import { useTypedSelector } from '../store';
 
 const { LOGIN_PAGE, PROFILE_PAGE, MAIN_PAGE, GIFTS_PAAGE } = RouteName
@@ -19,7 +20,7 @@ function GuestGuard({ children }: GuestGuardProps) {
 
     if (!isAuthorized) return <Navigate to="/login" />
 
-    return children
+    return <><TopMenu />{children}</>
 }
 
 type AuthGuardProps = {
@@ -37,7 +38,6 @@ function AuthGuard({ children }: AuthGuardProps) {
 export const appRouter = () =>
     createBrowserRouter([
         {
-            //element: baseLayout,
             errorElement: <div>error</div>,
             // loader: async () => {
             //     return await featureToggleLoader(appStore.dispatch)

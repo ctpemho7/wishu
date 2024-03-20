@@ -1,6 +1,7 @@
 import { ArrowForwardIos } from "@mui/icons-material";
-import { Card } from "@mui/material";
+import { Card, IconButton } from "@mui/material";
 import { CircleImage } from "../../../../shared/ui";
+// eslint-disable-next-line import/no-internal-modules
 import croll from '../../mocks/croll.jpeg'
 import { Friend } from "../../model/friend.model";
 
@@ -17,9 +18,9 @@ const FriendItem = ({ item }: FriendItemProps) => {
         <Card className={styles['friend-item']}>
             <CircleImage url={croll} />
             <span>{name}</span>
-            <div className={styles['button']}>
+            <IconButton className={styles['button']}>
                 <ArrowForwardIos />
-            </div>
+            </IconButton>
         </Card>
     );
 };

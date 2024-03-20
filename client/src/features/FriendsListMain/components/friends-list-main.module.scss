@@ -9,4 +9,11 @@
     h3 {
         margin: 0;
     }
+
+    &_title {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
