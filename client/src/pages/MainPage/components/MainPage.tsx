@@ -1,14 +1,9 @@
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { GiftList } from "../../../widgets/GiftList";
+
+import MainLists from "../../../widgets/ListMain/components/ListMain";
 
 const MainPage = () => {
     return (
-        <Grid2>
-            <Grid2>
-                <GiftList />
-            </Grid2>
-            <Grid2 />
-        </Grid2>
+        <MainLists />
     );
 };
 

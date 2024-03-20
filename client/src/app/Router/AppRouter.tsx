@@ -4,9 +4,10 @@ import { LoginPage } from '../../pages/LoginPage';
 import { MainPage } from '../../pages/MainPage';
 import { ProfilePage } from '../../pages/ProfilePage';
 import { RouteName } from '../../shared/confing/routes/routes';
+import { GiftList } from '../../widgets/GiftList';
 import { useTypedSelector } from '../store';
 
-const { LOGIN_PAGE, PROFILE_PAGE, MAIN_PAGE } = RouteName
+const { LOGIN_PAGE, PROFILE_PAGE, MAIN_PAGE, GIFTS_PAAGE } = RouteName
 
 
 type GuestGuardProps = {
@@ -63,6 +64,14 @@ export const appRouter = () =>
                     element: (
                         <GuestGuard>
                             <ProfilePage />
+                        </GuestGuard>
+                    ),
+                },
+                {
+                    path: GIFTS_PAAGE,
+                    element: (
+                        <GuestGuard>
+                            <GiftList />
                         </GuestGuard>
                     ),
                 },
