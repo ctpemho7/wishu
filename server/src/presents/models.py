@@ -8,7 +8,7 @@ class PresentsList(TimeStampMixin):
     name = models.CharField(max_length=50)
     date = models.DateField()
     description = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='lists')
 
 
 class Gift(TimeStampMixin):
@@ -17,7 +17,7 @@ class Gift(TimeStampMixin):
     min_price = models.IntegerField()
     max_price = models.IntegerField()
     booked = models.BooleanField(default=False)
-    list = models.ForeignKey(PresentsList, on_delete=models.CASCADE)
+    list = models.ForeignKey(PresentsList, on_delete=models.CASCADE, related_name='gifts')
 
 
 class GiftLinks(TimeStampMixin):
