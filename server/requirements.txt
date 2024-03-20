@@ -12,6 +12,8 @@ django-extensions>=3.2.0,<3.2.5
 # pygraphviz>=1.12,<1.13
 # вложенные сериализаторы
 drf-writable-nested>=0.7.0,<0.7.1
+# token-based auth
+djoser>=2.2.2,<2.3.0
 
 # статический анализ кода (линтеры)
 isort>=5.13.1,<5.14.0

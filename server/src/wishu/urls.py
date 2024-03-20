@@ -15,21 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from rest_framework import routers, permissions
 
 from events.views import EventViewSet
-from presents.views import GiftViewSet, PresentListViewSet
+from presents.views import GiftViewSet, PresentListViewSet, BookingAPIView
 from users.views import UserViewSet
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 
 router = routers.DefaultRouter()
-router.register(r'profile', UserViewSet)
-router.register(r'profile/(?P<profile_id>\d+)/lists', PresentListViewSet)
-router.register(r'lists/(?P<list_id>\d+)/gifts', GiftViewSet)
-router.register(r'profile/(?P<profile_id>\d+)/events', EventViewSet)
+# router.register(r'users', UserViewSet)
+router.register(r'lists/(?P<user_id>\d+)', PresentListViewSet)
+router.register(r'gifts/(?P<list_id>\d+)', GiftViewSet)
+router.register(r'events/(?P<user_id>\d+)', EventViewSet)
 
 
 schema_view = get_schema_view(
@@ -42,12 +42,17 @@ schema_view = get_schema_view(
    permission_classes=(permissions.AllowAny,),
 )
 
+prefix = "api/v1/"
 
 urlpatterns = [
-    path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    path(prefix + 'swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path(prefix + 'swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path(prefix + 'redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
-    path("admin/", admin.site.urls),
-    path("api/v1/", include(router.urls))
+    path(prefix + "admin/", admin.site.urls),
+    re_path(prefix + 'auth/', include('djoser.urls')),
+    re_path(prefix + 'auth/', include('djoser.urls.authtoken')),
+
+    path(prefix, include(router.urls)),
+
 ]

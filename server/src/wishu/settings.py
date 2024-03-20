@@ -47,14 +47,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    "django_extensions",
-
     "events.apps.EventsConfig",
     "presents.apps.PresentsConfig",
     "users.apps.UsersConfig",
 
     "rest_framework",
+    'rest_framework.authtoken',
     'drf_yasg',
+    'djoser',
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -144,7 +145,11 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
         # красивое отображение в браузере
-        'rest_framework.renderers.BrowsableAPIRenderer',
+        # 'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
     ],
 
     # 'DEFAULT_PERMISSION_CLASSES': [
