@@ -1,5 +1,6 @@
 import { ArrowForwardIos } from "@mui/icons-material";
-import { Card } from "@mui/material";
+import { Card, IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { CircleImage } from "../../../../shared/ui";
 import { PresentList } from "../../model/presentList.model";
 import styles from './present-list-item.module.scss'
@@ -14,14 +15,20 @@ const PresentListItem = ({ item }: PresentListItemProps) => {
         name
     } = item
 
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/gifts')
+    }
+
     return (
         <Card className={styles['present-list-item']}>
             <CircleImage url={''} />
             <span>{name}</span>
-            <div className={styles['button']}>
+            <IconButton onClick={handleClick} className={styles['button']}>
                 <ArrowForwardIos />
-            </div>
-        </Card>
+            </IconButton>
+        </Card >
     );
 };
 
