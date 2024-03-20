@@ -1,0 +1,18 @@
+.friend-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0.3em;
+    padding: 0.5em;
+    justify-content: center;
+
+    span {
+        margin: 0.5em;
+    }
+
+    .button {
+        margin-left: auto;
+    }
+
+}

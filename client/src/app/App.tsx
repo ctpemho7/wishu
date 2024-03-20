@@ -3,7 +3,7 @@ import React from 'react'
 import { RouterProvider } from 'react-router-dom'
 import { theme } from '../shared/confing/theme/theme'
 import { AppDialog } from '../shared/ui/AppDialog'
-import { appRouter } from './router/appRouter'
+import { appRouter } from './router/AppRouter'
 
 function App() {
   return (
