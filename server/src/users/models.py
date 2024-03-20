@@ -12,7 +12,7 @@ class User(TimeStampMixin, AbstractUser):
     AbstractUser уже содержит в себе поля username, first_name, last_name, email, is_staff, is_active, date_joined
     """
     birth_date = models.DateField("День рождения")
-    REQUIRED_FIELDS = ['birth_date']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'email', 'birth_date']
 
 
 class Friend(models.Model):
