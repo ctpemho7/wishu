@@ -2,6 +2,8 @@ Django>=4.2.10, <4.3.0
 djangorestframework==3.14.0
 # работа с переменными окружения
 django-environ==0.11.2
+# генерация Swagger
+drf-yasg>=1.21.4,<1.22.0
 # отладчик для Django
 django-debug-toolbar>=3.6.0,<3.7.0
 # доп возможности для django
