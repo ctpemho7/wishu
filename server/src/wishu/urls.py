@@ -18,11 +18,17 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import include, path, re_path
 from rest_framework import routers, permissions
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView
+)
+
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 from events.views import EventViewSet
-from presents.views import GiftViewSet, PresentListViewSet
+from presents.views import GiftViewSet, PresentListViewSet, GiftImagesViewSet, GiftImagesListViewSet
 from users.views import FriendsViewSet, FriendsListViewSet, FindFriendsListViewSet
 from wishu import settings
 
@@ -30,8 +36,12 @@ router = routers.DefaultRouter()
 router.register(r'friends/(?P<user_id>\d+)', FriendsListViewSet)
 router.register(r'friends', FriendsViewSet)
 router.register(r'find', FindFriendsListViewSet)
+
 router.register(r'lists/(?P<user_id>\d+)', PresentListViewSet)
 router.register(r'gifts/(?P<list_id>\d+)', GiftViewSet)
+#router.register(r'gifts/images/(?P<gift_id>\d+)', GiftImagesListViewSet)
+#router.register(r'gifts/images', GiftImagesViewSet)
+
 router.register(r'events/(?P<user_id>\d+)', EventViewSet)
 
 
@@ -54,7 +64,7 @@ urlpatterns = [
 
     path(prefix + "admin/", admin.site.urls),
     re_path(prefix + 'auth/', include('djoser.urls')),
-    re_path(prefix + 'auth/', include('djoser.urls.authtoken')),
+    path(prefix + 'auth/', include('djoser.urls.jwt')),
 
     path(prefix, include(router.urls)),
 
