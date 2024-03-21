@@ -18,6 +18,8 @@ djoser>=2.2.2,<2.3.0
 djangorestframework-simplejwt<=5.3.1,<5.4.0
 # фильтрация и поиск
 django-filter>=23.5,<24.0
+# cors
+django-cors-headers>=4.3.1,<4.4.0
 
 # статический анализ кода (линтеры)
 isort>=5.13.1,<5.14.0

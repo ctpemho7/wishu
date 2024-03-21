@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 
     "rest_framework",
     'rest_framework.authtoken',
+    "corsheaders",
     'drf_yasg',
     'djoser',
     "django_extensions",
@@ -63,6 +64,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -153,6 +155,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.User"
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+    "http://127.0.0.1:9000",
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
