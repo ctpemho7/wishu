@@ -23,12 +23,13 @@ from drf_yasg import openapi
 
 from events.views import EventViewSet
 from presents.views import GiftViewSet, PresentListViewSet
-from users.views import FriendsViewSet, FriendsListViewSet
+from users.views import FriendsViewSet, FriendsListViewSet, FindFriendsListViewSet
 from wishu import settings
 
 router = routers.DefaultRouter()
 router.register(r'friends/(?P<user_id>\d+)', FriendsListViewSet)
 router.register(r'friends', FriendsViewSet)
+router.register(r'find', FindFriendsListViewSet)
 router.register(r'lists/(?P<user_id>\d+)', PresentListViewSet)
 router.register(r'gifts/(?P<list_id>\d+)', GiftViewSet)
 router.register(r'events/(?P<user_id>\d+)', EventViewSet)
