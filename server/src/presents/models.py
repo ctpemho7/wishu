@@ -39,7 +39,7 @@ class GiftImages(TimeStampMixin):
     image = models.ImageField()
 
     def __str__(self):
-        return f"{self.gift.name} | {self.image[:30]}"
+        return f"{self.gift.name}"
 
 
 class BookedGifts(TimeStampMixin):
