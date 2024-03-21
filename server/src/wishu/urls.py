@@ -15,18 +15,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls.static import static
 from django.urls import include, path, re_path
 from rest_framework import routers, permissions
-
-from events.views import EventViewSet
-from presents.views import GiftViewSet, PresentListViewSet, BookingAPIView
-from users.views import UserViewSet
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from events.views import EventViewSet
+from presents.views import GiftViewSet, PresentListViewSet
+from users.views import FriendsViewSet, FriendsListViewSet
+from wishu import settings
 
 router = routers.DefaultRouter()
-# router.register(r'users', UserViewSet)
+router.register(r'friends/(?P<user_id>\d+)', FriendsListViewSet)
+router.register(r'friends', FriendsViewSet)
 router.register(r'lists/(?P<user_id>\d+)', PresentListViewSet)
 router.register(r'gifts/(?P<list_id>\d+)', GiftViewSet)
 router.register(r'events/(?P<user_id>\d+)', EventViewSet)
@@ -56,3 +58,7 @@ urlpatterns = [
     path(prefix, include(router.urls)),
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns.append(path("__debug__/", include("debug_toolbar.urls")))
