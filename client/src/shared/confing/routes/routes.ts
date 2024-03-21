@@ -4,7 +4,12 @@ export enum RouteName {
     MAIN_PAGE = '/main',
     LOGIN_PAGE = '/login',
     PROFILE_PAGE = '/profile',
-    GIFTS_PAAGE = '/gifts'
+    GIFTS_PAGE = '/gifts',
+    FRIENDS_LIST_PAGE = '/friendsList',
+    SEARCH_FRIEND_PAGE = '/searchFriend',
+    MY_PRESENTS_LISTS_PAGE = '/myPresenetsLists',
+    MY_PRESENT_LIST_PAGE = '/presentList',
+
 }
 
 export interface RouteDescription {

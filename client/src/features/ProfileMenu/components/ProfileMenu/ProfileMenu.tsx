@@ -1,6 +1,7 @@
 import { Avatar, Box, IconButton, Tooltip } from '@mui/material';
-import { MenuItem, Menu } from '@mui/material-next';
-import React from 'react';
+import { Menu } from '@mui/material-next';
+import React, { useCallback } from 'react';
+import ProfileMenuItemsList from '../ProfileMenuItemsList/ProfileMenuItemsList';
 
 const ProfileMenu = () => {
 
@@ -11,9 +12,9 @@ const ProfileMenu = () => {
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleClose = () => {
+    const handleClose = useCallback(() => {
         setAnchorEl(null);
-    };
+    }, [])
 
     return (
         <div>
@@ -66,24 +67,7 @@ const ProfileMenu = () => {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem onClick={handleClose}>
-                    {/* <ListItemIcon>
-                        <PersonAdd fontSize="small" />
-                    </ListItemIcon> */}
-                    Хочу подарить
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    {/* <ListItemIcon>
-                        <Settings fontSize="small" />
-                    </ListItemIcon> */}
-                    Настройки
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    {/* <ListItemIcon>
-                        <Logout fontSize="small" />
-                    </ListItemIcon> */}
-                    Выйти
-                </MenuItem>
+                <ProfileMenuItemsList handleClose={handleClose} />
             </Menu>
         </div>
     );

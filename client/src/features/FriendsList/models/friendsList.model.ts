@@ -1,6 +1,6 @@
 import { Friend } from "../../../entites/Friend/model/friend.model";
 
-export const friedList: Friend[] = [
+export const friendsList: Friend[] = [
     { id: 0, name: '0' },
     { id: 1, name: '1' },
     { id: 2, name: '2' },

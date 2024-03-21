@@ -1,4 +1,5 @@
 import MaterialInput, { OutlinedInputProps } from '@mui/material-next/OutlinedInput'
+import { } from '@mui/material-next/'
 
 const InputStyles = {
     margin: '0.2em'
