@@ -1,5 +1,6 @@
-import { Add } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+// import { Add } from "@mui/icons-material";
+// import { IconButton } from "@mui/material";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import FriendItem from "../../../entites/Friend/components/FriendItem/FriendItem";
 import Button from "../../../shared/ui/Button/Button";
@@ -11,22 +12,26 @@ const FriendsListMain = () => {
 
     const navigate = useNavigate()
 
-    const handleClickButton = () => {
+    const handleMoreButtonClick = () => {
         navigate('/friendsList')
     }
+
+    const handleFriendItemClick = useCallback((id: number) => {
+        navigate(`/friendProfilePage/${id}`)
+    }, [])
 
     return (
         <div className={styles['friends-list-main']}>
             <div className={styles['friends-list-main_title']}>
                 <h3>Мои друзья</h3>
-                <IconButton>
+                {/* <IconButton>
                     <Add />
-                </IconButton>
+                </IconButton> */}
             </div>
             {
-                friedList.slice(0, 3).map(item => <FriendItem key={item.id} item={item} />)
+                friedList.slice(0, 3).map(item => <FriendItem key={item.id} item={item} onClick={handleFriendItemClick} />)
             }
-            <Button variant='filledTonal' text="Больше" onClick={handleClickButton} />
+            <Button variant='filledTonal' text="Больше" onClick={handleMoreButtonClick} />
         </div>
     );
 };

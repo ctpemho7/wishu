@@ -1,5 +1,6 @@
 import MaterialInput, { OutlinedInputProps } from '@mui/material-next/OutlinedInput'
-import { } from '@mui/material-next/'
+import styles from './input.module.scss'
+
 
 const InputStyles = {
     margin: '0.2em'
@@ -24,6 +25,7 @@ const Input = ({ placeholder, onChange }: InputProps) => {
             {...MaterialInputProps}
             sx={InputStyles}
             onChange={(event) => onChange && onChange(event.target.value)}
+            className={styles['input']}
         />
     );
 };

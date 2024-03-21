@@ -1,6 +1,6 @@
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import { FriendsListMain } from '../../../features/FriendsListMain';
-import GiftListsListMain from '../../../features/PresentsListsMain/components/PresentsListsMain';
+import PresentListsCommon from '../../PresentListsCommon/components/PresentsListsMain';
 
 const MainLists = () => {
     return (
@@ -9,7 +9,7 @@ const MainLists = () => {
                 <FriendsListMain />
             </Grid2>
             <Grid2>
-                <GiftListsListMain />
+                <PresentListsCommon />
             </Grid2>
         </Grid2 >
     );

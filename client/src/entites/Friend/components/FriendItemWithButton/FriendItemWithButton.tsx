@@ -8,21 +8,29 @@ import styles from './friend-item-with-button.module.scss'
 interface FriendItemWithButtonProps {
     item: Friend
     isFriend: boolean
+    onItemClick?: (id: number) => void
 }
 
-const FriendItemWithButton = ({ item, isFriend = true }: FriendItemWithButtonProps) => {
+const FriendItemWithButton = ({ item, isFriend = true, onItemClick }: FriendItemWithButtonProps) => {
 
-    const { name } = item
+    const { name, id } = item
+
+    const handleItemClick = () => {
+        onItemClick && onItemClick(id)
+    }
 
     return (
-        <Card className={styles['friend-item-with-button']}>
-            <CircleImage url={'croll'} />
-            <span>{name}</span>
-            {
-                !isFriend ? <Button text='Подписаться' variant='filledTonal' /> : null
-            }
+        <div onClick={handleItemClick}>
+            <Card className={styles['friend-item-with-button']}>
+                <CircleImage url={'croll'} />
+                <span>{name}</span>
+                {
+                    !isFriend ? <Button text='Подписаться' variant='filledTonal' /> : null
+                }
 
-        </Card>
+            </Card>
+        </div>
+
     );
 };
 
