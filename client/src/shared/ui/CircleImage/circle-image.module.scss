@@ -1,0 +1,11 @@
+.circle-image {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 35px;
+    height: 35px;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}

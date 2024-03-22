@@ -1,4 +1,6 @@
 import MaterialInput, { OutlinedInputProps } from '@mui/material-next/OutlinedInput'
+import styles from './input.module.scss'
+
 
 const InputStyles = {
     margin: '0.2em'
@@ -6,6 +8,7 @@ const InputStyles = {
 
 export interface InputProps {
     placeholder?: string
+    onChange?: (value: string) => void
 }
 
 const MaterialInputProps: OutlinedInputProps = {
@@ -14,13 +17,15 @@ const MaterialInputProps: OutlinedInputProps = {
     color: 'secondary'
 }
 
-const Input = ({ placeholder }: InputProps) => {
+const Input = ({ placeholder, onChange }: InputProps) => {
     return (
         <MaterialInput
             placeholder={placeholder}
             label={'dadsd'}
             {...MaterialInputProps}
             sx={InputStyles}
+            onChange={(event) => onChange && onChange(event.target.value)}
+            className={styles['input']}
         />
     );
 };

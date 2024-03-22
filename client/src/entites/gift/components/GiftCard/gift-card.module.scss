@@ -1,0 +1,29 @@
+.gift-card {
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .responsive-image-container {
+        position: relative;
+        max-width: 100%;
+        margin: 0 auto;
+
+        svg {
+            position: absolute;
+            bottom: 10px;
+            right: 1px;
+        }
+    }
+
+    .responsive-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    span {
+        margin: 0.3em;
+    }
+}
