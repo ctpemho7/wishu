@@ -9,16 +9,22 @@ import styles from './friend-item.module.scss'
 
 interface FriendItemProps {
     item: Friend
+    onClick?: (id: number) => void
 }
-const FriendItem = ({ item }: FriendItemProps) => {
+const FriendItem = ({ item, onClick }: FriendItemProps) => {
 
-    const { name } = item
+    const { name, id } = item
+
+
+    const handleClickButton = () => {
+        onClick && onClick(id)
+    }
 
     return (
         <Card className={styles['friend-item']}>
             <CircleImage url={croll} />
             <span>{name}</span>
-            <IconButton className={styles['button']}>
+            <IconButton className={styles['button']} onClick={handleClickButton}>
                 <ArrowForwardIos />
             </IconButton>
         </Card>

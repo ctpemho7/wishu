@@ -1,8 +1,8 @@
 import { Friend } from "../../../entites/Friend/model/friend.model";
 
 export const friedList: Friend[] = [
-    { id: 0, name: 'Настечка' },
-    { id: 1, name: 'Настечка' },
-    { id: 2, name: 'Настечка' },
-    { id: 3, name: 'Настечка' },
+    { id: 0, name: '0' },
+    { id: 1, name: '1' },
+    { id: 2, name: '2' },
+    { id: 3, name: '3' },
 ]
