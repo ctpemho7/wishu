@@ -1,4 +1,4 @@
-import cipa from '/Users/kataev/Desktop/учеба/4 курс/wishu/client/src/shared/ui/GiftImage/cyplenok.jpg'
+import cipa from './cyplenok.jpg'
 import styles from './gift-image.module.scss'
 
 interface GiftImageProps {
