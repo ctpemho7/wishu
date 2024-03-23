@@ -28,7 +28,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 from events.views import EventViewSet
-from presents.views import GiftViewSet, PresentListViewSet, GiftImagesViewSet, GiftImagesListViewSet
+from presents.views import GiftViewSet, PresentListViewSet
 from users.views import FriendsViewSet, FriendsListViewSet, FindFriendsListViewSet
 from wishu import settings
 
@@ -39,8 +39,6 @@ router.register(r'find', FindFriendsListViewSet)
 
 router.register(r'lists/(?P<user_id>\d+)', PresentListViewSet)
 router.register(r'gifts/(?P<list_id>\d+)', GiftViewSet)
-#router.register(r'gifts/images/(?P<gift_id>\d+)', GiftImagesListViewSet)
-#router.register(r'gifts/images', GiftImagesViewSet)
 
 router.register(r'events/(?P<user_id>\d+)', EventViewSet)
 
