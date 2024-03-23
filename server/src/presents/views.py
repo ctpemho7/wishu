@@ -1,12 +1,10 @@
-from django.forms import model_to_dict
 from rest_framework import viewsets, status
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, action
-from rest_framework.views import APIView
 
-from presents.models import Gift, GiftLinks, PresentsList, BookedGifts
-from presents.serializers import GiftSerializer, PresentsListSerializer, BookedGiftsSerializer
+from presents.models import Gift, PresentsList, BookedGifts
+from presents.serializers import GiftSerializer, PresentsListSerializer, BookedGiftsSerializer, GiftImagesSerializer
 
 
 class PresentListViewSet(viewsets.ModelViewSet):
@@ -57,16 +55,3 @@ class GiftViewSet(viewsets.ModelViewSet):
         gift.save()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-class GiftLinksViewSet(viewsets.ModelViewSet):
-    queryset = GiftLinks.objects.all()
-    serializer_class = GiftSerializer
-
-    def get_queryset(self):
-        """
-        Возвращает подарки из списка.
-        Список определяется по параметру в url.
-        """
-        list_id = self.kwargs.get('list_id', 1)
-        return Gift.objects.filter(list=list_id)
