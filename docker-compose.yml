@@ -1,0 +1,60 @@
+version: "3"
+services:
+    server:
+        build: ./server
+        image: wishu-server
+        env_file:
+            - server/.env
+        volumes:
+            - ./server/src:/src
+            - ./server/static:/static
+            - ./server/media:/media
+        working_dir: /src/
+        command: python manage.py runserver 0.0.0.0:8000
+        ports:
+            - "8000:8000"
+        links:
+            - db
+        depends_on:
+            - db
+        networks:
+            - wishu_net
+
+
+    db:
+        image: postgres:14-alpine
+        env_file:
+            - server/.env
+        environment:
+            - POSTGRES_DB=wishu
+            - POSTGRES_USER=wishu_user
+            - POSTGRES_PASSWORD=secret
+        ports:
+            - "5432:5432"
+        expose:
+            - 5432
+        volumes:
+            - wishu_db:/var/lib/postgresql/data
+        networks:
+            - wishu_net
+
+
+    client:
+        build:
+          context: ./client
+        container_name: client
+        ports:
+            - "8001:8001"
+        expose:
+            - 8001
+        depends_on:
+            - server
+        networks:
+            - wishu_net
+
+
+volumes:
+  wishu_db:
+
+networks:
+    wishu_net:
