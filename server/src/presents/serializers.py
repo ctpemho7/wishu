@@ -5,13 +5,6 @@ from presents.models import (BookedGifts, Gift, GiftImages, GiftLinks,
                              PresentsList)
 
 
-class PresentsListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = PresentsList
-        fields = '__all__'
-
-
 class GiftLinksSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -40,3 +33,11 @@ class GiftSerializer(WritableNestedModelSerializer):
     class Meta:
         model = Gift
         fields = ["id", "name", "description", "min_price", "max_price", "booked", "list", "links", "images"]
+
+
+class PresentsListSerializer(serializers.ModelSerializer):
+    gifts = GiftSerializer(many=True)
+
+    class Meta:
+        model = PresentsList
+        fields = ["id", "name", "date", "description", "user", "gifts"]
