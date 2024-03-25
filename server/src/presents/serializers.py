@@ -36,8 +36,7 @@ class GiftSerializer(WritableNestedModelSerializer):
 
 
 class PresentsListSerializer(serializers.ModelSerializer):
-    gifts = GiftSerializer(many=True)
 
     class Meta:
         model = PresentsList
-        fields = ["id", "name", "date", "description", "user", "gifts"]
+        fields = ["id", "name", "date", "description", "user"]
