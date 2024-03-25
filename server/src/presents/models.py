@@ -17,8 +17,8 @@ class PresentsList(TimeStampMixin):
 class Gift(TimeStampMixin):
     name = models.CharField(max_length=50)
     description = models.TextField(blank=True)
-    min_price = models.IntegerField(blank=True)
-    max_price = models.IntegerField(blank=True)
+    min_price = models.IntegerField(blank=True, null=True)
+    max_price = models.IntegerField(blank=True, null=True)
     booked = models.BooleanField(default=False)
     list = models.ForeignKey(PresentsList, on_delete=models.CASCADE, related_name='gifts')
 
