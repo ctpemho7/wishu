@@ -6,8 +6,8 @@ from users.models import User
 
 class PresentsList(TimeStampMixin):
     name = models.CharField(max_length=50)
-    date = models.DateField()
-    description = models.TextField()
+    date = models.DateField(blank=True)
+    description = models.TextField(blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='lists')
 
     def __str__(self):
@@ -16,9 +16,9 @@ class PresentsList(TimeStampMixin):
 
 class Gift(TimeStampMixin):
     name = models.CharField(max_length=50)
-    description = models.TextField()
-    min_price = models.IntegerField()
-    max_price = models.IntegerField()
+    description = models.TextField(blank=True)
+    min_price = models.IntegerField(blank=True)
+    max_price = models.IntegerField(blank=True)
     booked = models.BooleanField(default=False)
     list = models.ForeignKey(PresentsList, on_delete=models.CASCADE, related_name='gifts')
 
@@ -27,7 +27,7 @@ class Gift(TimeStampMixin):
 
 
 class GiftLinks(TimeStampMixin):
-    gift = models.ForeignKey(Gift, related_name='links', on_delete=models.CASCADE)
+    gift = models.ForeignKey(Gift, related_name='links', on_delete=models.CASCADE, blank=True)
     link = models.URLField()
 
     def __str__(self):
@@ -35,7 +35,7 @@ class GiftLinks(TimeStampMixin):
 
 
 class GiftImages(TimeStampMixin):
-    gift = models.ForeignKey(Gift, related_name='images', on_delete=models.CASCADE)
+    gift = models.ForeignKey(Gift, related_name='images', on_delete=models.CASCADE, blank=True)
     image = models.ImageField()
 
     def __str__(self):
