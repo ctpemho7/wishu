@@ -1,10 +1,11 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
+from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from presents.models import Gift, PresentsList, BookedGifts
-from presents.serializers import GiftSerializer, PresentsListSerializer, BookedGiftsSerializer, GiftImagesSerializer
+from presents.serializers import GiftSerializer, PresentsListSerializer, BookedGiftsSerializer
 
 
 class PresentListViewSet(viewsets.ModelViewSet):
@@ -25,6 +26,7 @@ class GiftViewSet(viewsets.ModelViewSet):
     queryset = Gift.objects.all()
     serializer_class = GiftSerializer
     permission_classes = [IsAuthenticated]
+    parser_class = [JSONParser, MultiPartParser, FormParser]
 
     def get_queryset(self):
         """
