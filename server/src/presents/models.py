@@ -36,7 +36,7 @@ class GiftLinks(TimeStampMixin):
 
 class GiftImages(TimeStampMixin):
     gift = models.ForeignKey(Gift, related_name='images', on_delete=models.CASCADE, blank=True)
-    image = models.ImageField()
+    image = models.ImageField(upload_to="images")
 
     def __str__(self):
         return f"{self.gift.name}"

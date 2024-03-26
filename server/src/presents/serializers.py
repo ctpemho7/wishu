@@ -26,7 +26,7 @@ class BookedGiftsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class GiftSerializer(serializers.ModelSerializer):
+class GiftSerializer(WritableNestedModelSerializer):
     images = GiftImagesSerializer(many=True, required=False)
     links = GiftLinksSerializer(many=True, required=False)
 
