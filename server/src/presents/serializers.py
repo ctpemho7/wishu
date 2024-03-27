@@ -16,7 +16,7 @@ class GiftImagesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GiftImages
-        fields = ("id", "image", )
+        fields = ("id", "gift", "image", )
 
 
 class BookedGiftsSerializer(serializers.ModelSerializer):
@@ -27,7 +27,7 @@ class BookedGiftsSerializer(serializers.ModelSerializer):
 
 
 class GiftSerializer(WritableNestedModelSerializer):
-    images = GiftImagesSerializer(many=True, required=False)
+    images = GiftImagesSerializer(many=True, required=False, read_only=True)
     links = GiftLinksSerializer(many=True, required=False)
 
     class Meta:

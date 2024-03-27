@@ -4,8 +4,8 @@ from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from presents.models import Gift, PresentsList, BookedGifts
-from presents.serializers import GiftSerializer, PresentsListSerializer, BookedGiftsSerializer
+from presents.models import Gift, PresentsList, BookedGifts, GiftImages
+from presents.serializers import GiftSerializer, PresentsListSerializer, BookedGiftsSerializer, GiftImagesSerializer
 
 
 class PresentListViewSet(viewsets.ModelViewSet):
@@ -57,3 +57,20 @@ class GiftViewSet(viewsets.ModelViewSet):
         gift.save()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(detail=True, methods=['PATCH'])
+    def upload_images(self, request, list_id, pk):
+        validated_images = request.FILES.getlist('images')
+        images = GiftImages.objects.filter(gift=pk)
+        if len(images):
+            print("delete images")
+            images.delete()
+
+        returned = []
+        for image in validated_images:
+            serializer = GiftImagesSerializer(data={"gift": pk, "image": image})
+            if serializer.is_valid():
+                serializer.save()
+                returned.append(serializer.data)
+
+        return Response({'image': returned}, status=status.HTTP_201_CREATED)
