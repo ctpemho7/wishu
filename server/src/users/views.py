@@ -22,7 +22,11 @@ class FriendsListViewSet(mixins.ListModelMixin,
         Возвращает queryset из друзей пользователя.
         """
         user_id = self.kwargs.get('user_id', 1)
-        return User.objects.filter(Q(friend=user_id) | Q(user=user_id))
+        query_for_user = Friend.objects.filter(friend=user_id).values_list('user', flat=True)
+        query_for_friend = Friend.objects.filter(user=user_id).values_list('friend', flat=True)
+        friends = query_for_user.union(query_for_friend)
+
+        return User.objects.filter(id__in=friends).order_by("username")
 
 
 class FriendsViewSet(mixins.CreateModelMixin,

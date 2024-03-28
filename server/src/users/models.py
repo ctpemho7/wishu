@@ -19,4 +19,5 @@ class Friend(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
     friend = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friend')
 
-
+    def __str__(self):
+        return f'User {self.user.username}, Friend {self.friend.username}'
