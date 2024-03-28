@@ -9,6 +9,12 @@ from presents.serializers import GiftSerializer, PresentsListSerializer, BookedG
 
 
 class PresentListViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet для работы со списком подарков конкретного пользователя.
+    Позволяет получить список списков, добавить новый список,
+    а так же предоставляет операции получения, изменения и удаления одного списка.
+    """
+
     serializer_class = PresentsListSerializer
     queryset = PresentsList.objects.all()
     permission_classes = [IsAuthenticated]
@@ -23,6 +29,12 @@ class PresentListViewSet(viewsets.ModelViewSet):
 
 
 class GiftViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet для работы с подарками конкретного пользователя.
+    Позволяет получить список подарков, добавить новый подарок,
+    а так же предоставляет операции получения, изменения и удаления одного подарка.
+    """
+
     queryset = Gift.objects.all()
     serializer_class = GiftSerializer
     permission_classes = [IsAuthenticated]
@@ -38,6 +50,9 @@ class GiftViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['POST'])
     def book(self, request, list_id, pk):
+        """
+        Бронирование подарка.
+        """
         user = request.user
         gift = Gift.objects.get(id=pk)
         booking_serializer = BookedGiftsSerializer(data={"gift": pk, "user": user.id})
@@ -50,6 +65,9 @@ class GiftViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['DELETE'])
     def unbook(self, request, list_id, pk):
+        """
+        Отмена бронирования подарка.
+        """
         booking = BookedGifts.objects.get(gift=pk)
         booking.delete()
         gift = Gift.objects.get(id=pk)
