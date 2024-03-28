@@ -1,18 +1,20 @@
-from rest_framework import viewsets, mixins, filters, generics
+from rest_framework import viewsets, mixins
 from rest_framework.permissions import IsAuthenticated
+from django.db.models import Q
 
+from users.filters import FriendsFilterBackend
 from users.models import Friend, User
-from users.serializers import FriendSerializer, UserAsFriendSerializer
+from users.serializers import FriendSerializer, UserForSearchingSerializer, UserAsFriendSerializer
 
 
 class FriendsListViewSet(mixins.ListModelMixin,
                          viewsets.GenericViewSet):
     """
     ViewSet для получения списка друзей конкретного пользователя.
-    Обеспечивает методы `list`, `create`, `destroy` для получения списка друзей, создания и удаления связи.
+    Обеспечивает метод `list` для получения списка друзей.
     """
-    queryset = Friend.objects.all()
-    serializer_class = FriendSerializer
+    queryset = User.objects.all()
+    serializer_class = UserAsFriendSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -20,7 +22,7 @@ class FriendsListViewSet(mixins.ListModelMixin,
         Возвращает queryset из друзей пользователя.
         """
         user_id = self.kwargs.get('user_id', 1)
-        return Friend.objects.filter(user=user_id)
+        return User.objects.filter(Q(friend=user_id) | Q(user=user_id))
 
 
 class FriendsViewSet(mixins.CreateModelMixin,
@@ -42,7 +44,7 @@ class FindFriendsListViewSet(mixins.ListModelMixin,
     """
 
     queryset = User.objects.all()
-    serializer_class = UserAsFriendSerializer
+    serializer_class = UserForSearchingSerializer
     permission_classes = [IsAuthenticated]
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [FriendsFilterBackend]
     search_fields = ['username', ]
