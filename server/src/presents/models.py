@@ -43,7 +43,7 @@ class GiftImages(TimeStampMixin):
 
 
 class BookedGifts(TimeStampMixin):
-    gift = models.ForeignKey(Gift, on_delete=models.CASCADE)
+    gift = models.ForeignKey(Gift, on_delete=models.CASCADE, related_name='booking')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

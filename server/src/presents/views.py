@@ -1,3 +1,4 @@
+from django.db.models import Case, When, Value, IntegerField, F
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
@@ -46,7 +47,15 @@ class GiftViewSet(viewsets.ModelViewSet):
         Список определяется по параметру в url.
         """
         list_id = self.kwargs.get('list_id', 1)
-        return Gift.objects.filter(list=list_id)
+        gifts = Gift.objects.filter(list=list_id)
+        gifts_with_booking_user = gifts.annotate(
+            booked_by=Case(
+                When(booked=True, then=F('booking__user')),
+                default=Value(None, output_field=IntegerField())
+            )
+        )
+
+        return gifts_with_booking_user
 
     @action(detail=True, methods=['POST'])
     def book(self, request, list_id, pk):
