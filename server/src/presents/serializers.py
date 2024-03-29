@@ -29,7 +29,7 @@ class BookedGiftsSerializer(serializers.ModelSerializer):
 class GiftSerializer(WritableNestedModelSerializer):
     images = GiftImagesSerializer(many=True, required=False, read_only=True)
     links = GiftLinksSerializer(many=True, required=False)
-    booked_by = serializers.IntegerField()
+    booked_by = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Gift
