@@ -16,7 +16,9 @@ services:
         links:
             - db
         depends_on:
-            - db
+            db:
+                condition: service_healthy
+        restart: always
         networks:
             - wishu_net
 
@@ -37,7 +39,11 @@ services:
             - wishu_db:/var/lib/postgresql/data
         networks:
             - wishu_net
-
+        healthcheck:
+            test: [ "CMD-SHELL", "sh -c 'pg_isready -U wishu_user -d wishu'" ]
+            interval: 10s
+            timeout: 5s
+            retries: 5
 
     client:
         build:
